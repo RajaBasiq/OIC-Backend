@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BAL.Dto;
+using Microsoft.AspNetCore.Identity.Data;
 using OIC.RequestDto;
 using OIC.ResponseDto;
 using OIC.ResponseDto;
@@ -34,8 +35,13 @@ namespace OIC.Mapper
 
             CreateMap<UpdateStudentDto, UpdateStudentRequestDto>().ReverseMap();
 
-            CreateMap<StudentMiniResponse, StudentMiniDto>().ReverseMap();
+            CreateMap<StudentMiniDto, StudentMiniResponse>().
+                ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id)).
+                ReverseMap();
 
+            CreateMap<LoginRequestDto, LoginRequest>().
+                ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Username)).
+                ForMember(dest => dest.Password, opt => opt.MapFrom(src => src.Password));
         }
     }
 }

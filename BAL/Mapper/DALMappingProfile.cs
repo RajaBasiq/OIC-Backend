@@ -13,6 +13,7 @@ namespace BAL.Mapper
             CreateMap<LibraryDataModel, DAL.Dto.LibraryDto>().ReverseMap();
             CreateMap<HostelDataModel, DAL.Dto.HostelDto>().ReverseMap();
             CreateMap<UpdateStudentModel, DAL.Dto.UpdateStudentDto>().ReverseMap();
+            CreateMap<RefreshTokenDataModel, DAL.Dto.RefreshTokenDto>().ReverseMap();
         }
     }
 }

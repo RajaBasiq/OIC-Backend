@@ -47,9 +47,12 @@ namespace DAL.Repository.Implementation
                 var studentModel = _mapper.Map<Student>(requestDto.student);
                 var educationModel = _mapper.Map<List<Education>>(requestDto.educations);
                 var libraryModel = _mapper.Map<List<Library>>(requestDto.libraries);
+                var hostelModel = _mapper.Map<Hostel>(requestDto.hostel);
 
                 studentModel.Guardian = guardianModel;
                 studentModel.Educations = educationModel;
+                studentModel.Hostel = hostelModel;
+                _dbContext.Hostels.Attach(hostelModel);
                 foreach (var library in libraryModel)
                 {
                     _dbContext.Libraries.Attach(library);

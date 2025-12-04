@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BAL.Dto;
 using BAL.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OIC.RequestDto;
 using OIC.ResponseDto;
@@ -27,6 +28,8 @@ namespace OIC.Controllers
             _studentService = studentService;
             _studentOnboardingService = studentOnboardingService;
         }
+        [Authorize]
+        [HttpOptions]
         [HttpGet, Route("GetAll")]
         public IActionResult GetAll()
         {
@@ -42,6 +45,8 @@ namespace OIC.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize]
+        [HttpOptions]
         [HttpGet, Route("GetStudent/{id}")]
         public IActionResult GetStudent(long Id)
         {
@@ -57,6 +62,8 @@ namespace OIC.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize]
+        [HttpOptions]
         [HttpGet("{id}"), Route("{id}")]
         public IActionResult GetById(long id)
         {
@@ -72,7 +79,8 @@ namespace OIC.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        [Authorize]
+        [HttpOptions]
         [HttpPost, Route("Create")]
         public IActionResult Create([FromBody] CreateStudentRequestDto requestDto)
         {
@@ -113,6 +121,7 @@ namespace OIC.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize]
         [HttpOptions]
         [HttpPut, Route("UpdateStudentDetails")]
         public IActionResult UpdateStudentDetails([FromBody] UpdateStudentRequestDto requestDto)
@@ -138,7 +147,8 @@ namespace OIC.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        [Authorize]
+        [HttpOptions]
         [HttpPut, Route("Update")]
         public IActionResult Update([FromBodyAttribute] UpdateStudentRequestDto dto)
         {
@@ -155,7 +165,8 @@ namespace OIC.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        [Authorize]
+        [HttpOptions]
         [HttpDelete("{id}"), Route("{id}")]
         public IActionResult Delete(long id)
         {

@@ -28,6 +28,8 @@ namespace DAL.Mapper
                 .ReverseMap();
             CreateMap<Education, EducationDto>()
                 .ReverseMap();
+            CreateMap<RefreshToken, RefreshTokenDto>()
+                .ReverseMap();
         }
     }
 }

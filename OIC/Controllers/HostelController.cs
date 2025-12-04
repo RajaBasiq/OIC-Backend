@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BAL.Dto;
 using BAL.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OIC.RequestDto;
@@ -40,6 +41,7 @@ namespace OIC.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet("{id}"), Route("{id}")]
         public IActionResult GetById(long id)
         {
@@ -55,6 +57,7 @@ namespace OIC.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize]
         [HttpOptions]
         [HttpPost, Route("Create")]
         public IActionResult Create([FromBody] CreateHostelRequestDto requestDto)
@@ -79,7 +82,9 @@ namespace OIC.Controllers
             }
         }
 
-        [HttpPut, Route("Update"),HttpOptions]
+        [Authorize]
+        [HttpOptions]
+        [HttpPut, Route("Update")]
         public IActionResult Update([FromBody] UpdateHostelRequestDto dto)
         {
             try
@@ -96,6 +101,8 @@ namespace OIC.Controllers
             }
         }
 
+        [Authorize]
+        [HttpOptions]
         [HttpDelete("{id}"), Route("{id}")]
         public IActionResult Delete(long id)
         {

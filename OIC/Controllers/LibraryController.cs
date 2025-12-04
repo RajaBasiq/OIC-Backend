@@ -3,6 +3,7 @@ using BAL.Dto;
 using BAL.Services.Interfaces;
 using DAL.Repository.Implementation;
 using DAL.Repository.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OIC.RequestDto;
@@ -42,7 +43,7 @@ namespace OIC.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        [Authorize]
         [HttpGet("{id}"), Route("{id}")]
         public IActionResult GetById(long id)
         {
@@ -58,6 +59,7 @@ namespace OIC.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize]
         [HttpOptions]
         [HttpPost, Route("Create")]
         public IActionResult Create([FromBodyAttribute] CreateLibraryRequestDto requestDto)
@@ -88,8 +90,9 @@ namespace OIC.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-        [HttpPut, Route("Update"),HttpOptions]
+        [Authorize]
+        [HttpOptions]
+        [HttpPut, Route("Update")]
         public IActionResult Update([FromBodyAttribute] UpdateLibraryRequestDto dto)
         {
             try
@@ -105,7 +108,8 @@ namespace OIC.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        [Authorize]
+        [HttpOptions]
         [HttpDelete("{id}"), Route("{id}")]
         public IActionResult Delete(long id)
         {
