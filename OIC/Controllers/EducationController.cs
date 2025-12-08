@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using BAL.Dto;
-using BAL.Services.Implementation;
 using BAL.Services.Interfaces;
-using DAL.Model;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OIC.RequestDto;
 using OIC.ResponseDto;
@@ -28,7 +25,6 @@ namespace OIC.Controllers
             _educationService = educationService;
         }
         [Authorize]
-        [HttpOptions]
         [HttpGet, Route("GetAll")]
         public IActionResult GetAll()
         {
@@ -46,7 +42,6 @@ namespace OIC.Controllers
         }
 
         [Authorize]
-        [HttpOptions]
         [HttpGet("{id}"), Route("{id}")]
         public IActionResult GetById(long id)
         {
@@ -64,7 +59,6 @@ namespace OIC.Controllers
         }
 
         [Authorize]
-        [HttpOptions]
         [HttpPost, Route("Create")]
         public IActionResult Create([FromBody] CreateEducationRequestDto requestDto)
         {
@@ -83,7 +77,6 @@ namespace OIC.Controllers
         }
 
         [Authorize]
-        [HttpOptions]
         [HttpPut, Route("Update")]
         public IActionResult Update([FromBody] UpdateEducationRequestDto dto)
         {
@@ -102,7 +95,6 @@ namespace OIC.Controllers
         }
 
         [Authorize]
-        [HttpOptions]
         [HttpDelete("{id}"), Route("{id}")]
         public IActionResult Delete(long id)
         {

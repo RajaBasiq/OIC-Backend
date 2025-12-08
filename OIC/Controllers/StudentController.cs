@@ -29,7 +29,6 @@ namespace OIC.Controllers
             _studentOnboardingService = studentOnboardingService;
         }
         [Authorize]
-        [HttpOptions]
         [HttpGet, Route("GetAll")]
         public IActionResult GetAll()
         {
@@ -46,7 +45,6 @@ namespace OIC.Controllers
             }
         }
         [Authorize]
-        [HttpOptions]
         [HttpGet, Route("GetStudent/{id}")]
         public IActionResult GetStudent(long Id)
         {
@@ -63,7 +61,6 @@ namespace OIC.Controllers
             }
         }
         [Authorize]
-        [HttpOptions]
         [HttpGet("{id}"), Route("{id}")]
         public IActionResult GetById(long id)
         {
@@ -80,7 +77,7 @@ namespace OIC.Controllers
             }
         }
         [Authorize]
-        [HttpOptions]
+        
         [HttpPost, Route("Create")]
         public IActionResult Create([FromBody] CreateStudentRequestDto requestDto)
         {
@@ -97,7 +94,7 @@ namespace OIC.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpOptions]
+        
         [HttpPost, Route("OnBoardStudent")]
         public IActionResult OnBoardStudent([FromBody] OnBoardStudentRequestDto requestDto)
         {
@@ -122,7 +119,7 @@ namespace OIC.Controllers
             }
         }
         [Authorize]
-        [HttpOptions]
+        
         [HttpPut, Route("UpdateStudentDetails")]
         public IActionResult UpdateStudentDetails([FromBody] UpdateStudentRequestDto requestDto)
         {
@@ -148,7 +145,7 @@ namespace OIC.Controllers
             }
         }
         [Authorize]
-        [HttpOptions]
+        
         [HttpPut, Route("Update")]
         public IActionResult Update([FromBodyAttribute] UpdateStudentRequestDto dto)
         {
@@ -166,7 +163,7 @@ namespace OIC.Controllers
             }
         }
         [Authorize]
-        [HttpOptions]
+        
         [HttpDelete("{id}"), Route("{id}")]
         public IActionResult Delete(long id)
         {

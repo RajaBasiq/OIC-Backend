@@ -1,13 +1,9 @@
 ﻿using AutoMapper;
 using BAL.Dto;
 using BAL.Services.Interfaces;
-using DAL.Repository.Implementation;
-using DAL.Repository.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OIC.RequestDto;
-using OIC.ResponseDto;
 using OIC.ResponseDto;
 
 namespace OIC.Controllers
@@ -60,7 +56,6 @@ namespace OIC.Controllers
             }
         }
         [Authorize]
-        [HttpOptions]
         [HttpPost, Route("Create")]
         public IActionResult Create([FromBodyAttribute] CreateLibraryRequestDto requestDto)
         {
@@ -91,7 +86,6 @@ namespace OIC.Controllers
             }
         }
         [Authorize]
-        [HttpOptions]
         [HttpPut, Route("Update")]
         public IActionResult Update([FromBodyAttribute] UpdateLibraryRequestDto dto)
         {
@@ -109,7 +103,6 @@ namespace OIC.Controllers
             }
         }
         [Authorize]
-        [HttpOptions]
         [HttpDelete("{id}"), Route("{id}")]
         public IActionResult Delete(long id)
         {

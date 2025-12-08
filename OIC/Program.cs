@@ -40,10 +40,10 @@ namespace OIC
             builder.Services.AddScoped<IEducationRepo, EducationRepo>();
             builder.Services.AddScoped<IHostelService, HostelService>();
             builder.Services.AddScoped<IHostelRepo, HostelRepo>();
-            builder.Services.AddScoped<IRefreshTokenRepo, RefreshTokenRepo>();
             builder.Services.AddScoped<ILibraryService, LibraryService>();
-            builder.Services.AddScoped<ILoginService, LoginService>();
             builder.Services.AddScoped<ILibraryRepo, LibraryRepo>();
+            builder.Services.AddScoped<ILoginService, LoginService>();
+            builder.Services.AddScoped<IRefreshTokenRepo, RefreshTokenRepo>();
             builder.Services.AddScoped<IStudentOnboardingService, StudentOnboardingService>();
             builder.Services.AddScoped<IStudentOnboardingRepo, StudentOnboardingRepo>();
             builder.Services.AddScoped<IValidator<OnBoardStudentDto>, StudentOnboardingValidation>();
@@ -85,7 +85,7 @@ namespace OIC
             {
                 options.AddPolicy("AllowAngular",
                     builder => builder
-                        .WithOrigins("http://localhost:4200")  // your Angular URL
+                        .WithOrigins("http://localhost:4200")
                         .AllowAnyHeader()
                         .AllowAnyMethod()
                         .AllowCredentials()   // needed if using cookies or auth
@@ -93,17 +93,10 @@ namespace OIC
             });
 
             var app = builder.Build();
-
-            //if (app.Environment.IsDevelopment())
-            //{
-            //    app.UseSwagger();
-            //    app.UseSwaggerUI();
-            //}
-
             app.UseHttpsRedirection();
-            app.UseRouting();
             app.UseCors("AllowAngular");
-            app.UseAuthentication();   // MUST be before UseAuthorization
+            app.UseRouting();
+            app.UseAuthentication();
             app.UseAuthorization();
             app.MapControllers();
 
